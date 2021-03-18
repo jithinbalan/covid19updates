@@ -1,0 +1,22 @@
+body .MuiPaper-elevation1{
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.07);
+}
+.main-map-div{
+    height:39rem!important;
+    max-width: 100%!important;
+    /* margin-top:3rem!important; */
+}
+
+/* .word-wrap {
+    display: inline-block;
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+} */
+.country-input{
+    width: 90%!important;
+}
+.search-button{
+    margin-top: 7px!important;
+}

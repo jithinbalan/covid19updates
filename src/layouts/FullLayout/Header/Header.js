@@ -35,7 +35,7 @@ const Header = (props) => {
             <Toolbar>
                 {/* ------------ Logo ------------- */}
                 <Link to="/" className={classes.Logo}>
-                    <LogoIcon mdDown/>
+                    {/* <LogoIcon mdDown/> */}
                     <Hidden><span className={classes.logoText}>&nbsp;<LogoText /></span></Hidden>
                 </Link>
                 {/* ------------ End Logo ------------- */}

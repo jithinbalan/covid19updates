@@ -35,8 +35,8 @@ const Header = (props) => {
             <Toolbar>
                 {/* ------------ Logo ------------- */}
                 <Link to="/" className={classes.Logo}>
-                    <LogoIcon />
-                    <Hidden mdDown><span className={classes.logoText}>&nbsp;<LogoText /></span></Hidden>
+                    <LogoIcon mdDown/>
+                    <Hidden><span className={classes.logoText}>&nbsp;<LogoText /></span></Hidden>
                 </Link>
                 {/* ------------ End Logo ------------- */}
                 {/* ------------ Menu icon ------------- */}

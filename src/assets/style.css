@@ -29,3 +29,8 @@ body .MuiPaper-elevation1{
 .logo-text{
     width:50%!important
 }
+@media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ 
+    .logo-text {
+        width: 25%!important;
+    }
+}

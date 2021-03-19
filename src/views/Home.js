@@ -21,6 +21,7 @@ import { connect } from "react-redux";
 import { ResponsiveChoropleth } from '@nivo/geo';
 import Typography from '@material-ui/core/Typography';
 import Spinner from "../views/Spinner/Spinner";
+import Zoom from '@material-ui/core/Zoom';
 
 import MapData from '../assets/localdata/world_countries.json';
 import CountriesNameCode from '../assets/localdata/countries_name_code.json';
@@ -108,27 +109,59 @@ class Home extends Component {
                 {this.state.Isloading ?
                     <>
                         {/* Card Section */}
-                        <Grid item lg={4} md={12} xs={12}>
-                            <InfoCards heading="Active Cases" icon={<TrendingUp/>} style={{background: '#fdaeae'}} cost={this.state.world_total.active_cases}/>
-                        </Grid>
-                        <Grid item lg={4} md={12} xs={12}>
-                            <InfoCards heading="New Cases" icon={<TrendingUp/>} style={{background: '#89c9f3'}} cost={this.state.world_total.new_cases}/>
-                        </Grid>
-                        <Grid item lg={4} md={12} xs={12}>
-                            <InfoCards heading="New Deaths" icon={<TrendingUp/>} style={{background: '#f1cc65'}} cost={this.state.world_total.new_deaths}/>
-                        </Grid>
+                        <Zoom in={true}>
+                            <Grid item lg={4} md={12} xs={12}>
+                                <InfoCards heading="Active Cases" icon={<TrendingUp/>} style={{background: '#fdaeae'}} cost={this.state.world_total.active_cases}/>
+                            </Grid>
+                        </Zoom>
 
-                        <Grid item lg={4} md={12} xs={12}>
-                            <InfoCards heading="Total Cases" icon={<HowToReg/>} style={{background: '#97e8b0'}} cost={this.state.world_total.total_cases}/>
-                        </Grid>
+                        <Zoom in={true}>
+                            <Grid item lg={4} md={12} xs={12}>
+                                <InfoCards heading="New Cases" icon={<TrendingUp/>} style={{background: '#89c9f3'}} cost={this.state.world_total.new_cases}/>
+                            </Grid>
+                        </Zoom>
 
-                        <Grid item lg={4} md={12} xs={12}>
-                            <InfoCards heading="Total Recovered" icon={<HowToReg/>} style={{background: '#97e8b0'}} cost={this.state.world_total.total_recovered}/>
-                        </Grid>
+                        <Zoom in={true}>
+                            <Grid item lg={4} md={12} xs={12}>
+                                <InfoCards heading="New Deaths" icon={<TrendingUp/>} style={{background: '#f1cc65'}} cost={this.state.world_total.new_deaths}/>
+                            </Grid>
+                        </Zoom>
 
-                        <Grid item lg={4} md={12} xs={12}>
-                            <InfoCards heading="Total Deaths" icon={<MoodBad/>} style={{background: '#ce5757'}} cost={this.state.world_total.total_deaths}/>
-                        </Grid>
+                        <Zoom in={true}>
+                            <Grid item lg={4} md={12} xs={12}>
+                                <InfoCards heading="Deaths Per 1 Million Population" icon={<TrendingUp/>} style={{background: '#fdaeae'}} cost={this.state.world_total.deaths_per_1m_population}/>
+                            </Grid>
+                        </Zoom>
+
+                        <Zoom in={true}>
+                            <Grid item lg={4} md={12} xs={12}>
+                                <InfoCards heading="Serious Cases" icon={<TrendingUp/>} style={{background: '#89c9f3'}} cost={this.state.world_total.serious_critical}/>
+                            </Grid>
+                        </Zoom>
+
+                        <Zoom in={true}>
+                            <Grid item lg={4} md={12} xs={12}>
+                                <InfoCards heading="Cases Per 1 Million Population" icon={<TrendingUp/>} style={{background: '#f1cc65'}} cost={this.state.world_total.total_cases_per_1m_population}/>
+                            </Grid>
+                        </Zoom>
+
+                        <Zoom in={true}>
+                            <Grid item lg={4} md={12} xs={12}>
+                                <InfoCards heading="Total Cases" icon={<HowToReg/>} style={{background: '#97e8b0'}} cost={this.state.world_total.total_cases}/>
+                            </Grid>
+                        </Zoom>
+
+                        <Zoom in={true}>
+                            <Grid item lg={4} md={12} xs={12}>
+                                <InfoCards heading="Total Recovered" icon={<HowToReg/>} style={{background: '#97e8b0'}} cost={this.state.world_total.total_recovered}/>
+                            </Grid>
+                        </Zoom>
+
+                        <Zoom in={true}>
+                            <Grid item lg={4} md={12} xs={12}>
+                                <InfoCards heading="Total Deaths" icon={<MoodBad/>} style={{background: '#ce5757'}} cost={this.state.world_total.total_deaths}/>
+                            </Grid>
+                        </Zoom>
 
                         {/* Map Section */}
                         <Grid item lg={12} md={12} xs={12} >

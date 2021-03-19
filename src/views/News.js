@@ -28,6 +28,8 @@ import CountriesNameCode from '../assets/localdata/countries_name_code.json';
 
 import axios from "axios";
 import moment from 'moment'
+import Zoom from '@material-ui/core/Zoom';
+import Grow from '@material-ui/core/Grow';
 
 class News extends Component {
     
@@ -76,9 +78,12 @@ class News extends Component {
                     {this.state.ArticleIsloading == false ? 
                             Object.keys(Articles).map(function(Article, index) {
                                 return(
-                                    <Grid item lg={4} md={12} xs={12} key={index}>
-                                        <BlogCard summary={Articles[Article].summary} image={Articles[Article].media} title={Articles[Article].title}/>
-                                    </Grid>
+                                    <Zoom in={true}>
+                                        <Grid item lg={4} md={12} xs={12} key={index}>
+                                            <BlogCard summary={Articles[Article].summary} image={Articles[Article].media} title={Articles[Article].title}/>
+                                        </Grid>
+                                    </Zoom>
+                                    
                                 );
                             })
                         : <Spinner/>

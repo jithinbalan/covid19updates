@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     Logo: {
         display: 'flex',
         alignItems: 'center',
+        width:'15%',
     },
     logoText:{
        minWidth:200, 

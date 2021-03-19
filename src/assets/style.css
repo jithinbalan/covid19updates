@@ -18,5 +18,14 @@ body .MuiPaper-elevation1{
     width: 90%!important;
 }
 .search-button{
-    margin-top: 7px!important;
+    height: 55px;
+}
+.who-image{
+    width: 100%!important;
+}
+.logo-icon{
+    width:15%!important
+}
+.logo-text{
+    width:50%!important
 }

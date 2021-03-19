@@ -4,6 +4,9 @@ import {
     Card,
     CardContent,
     CardHeader,
+    Box,
+    Container,
+    CardMedia
   } from '@material-ui/core';
 import SalesOverview from  '../Components/DashboardComponents/SalesOverview'  
 import Visitors from  '../Components/DashboardComponents/Visitors'  
@@ -23,19 +26,29 @@ import Button from '@material-ui/core/Button';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import {  Search} from '@material-ui/icons';
-import { object } from 'prop-types';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
+import Zoom from '@material-ui/core/Zoom';
+import Who1 from '../assets/images/covidprecuations/Who1.jpg'
+import Who2 from '../assets/images/covidprecuations/Who2.jpg'
+import Who3 from '../assets/images/covidprecuations/Who3.jpg'
+import Who4 from '../assets/images/covidprecuations/Who4.jpg'
+import Who5 from '../assets/images/covidprecuations/Who5.png'
+import Who6 from '../assets/images/covidprecuations/Who6.jpg'
 
+
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          Isloading:false,
-          ArticleIsloading:true,
-          Articles:{},
-          Dummy:['1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1',],
-          TableData:[]
+          Searchloading:false,
+          cntryid:'',
+          SelectedCountry:{}
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
       }
         componentDidMount(){
             let self = this;
@@ -67,24 +80,43 @@ class Home extends Component {
         }
 
     handleChange = (event, values) => {
-        const Countries = this.state.data;
-        Object.keys(Countries).filter((Country)=>{
-            
-            console.log(Country) 
-
-            console.log(values.alpha3) 
-        })
-
+        if(values!== null ){
+            this.setState({cntryid:values.name});
+        }else{
+            this.setState({cntryid:null});
+        }
     }
+    handleSearch(){
+        if(this.state.cntryid !== null && this.state.cntryid !== ''){
+                const Countries = this.state.countries_stat;
+                this.setState({Searchloading:true});
+                const Country = Object.keys(Countries).map((Country)=>{
+                    if(Countries[Country].country_name == this.state.cntryid){
+                        return Countries[Country];
+                    }
+                });
+                const SelectedCountry = Object.keys(Country).reduce((acc, key) => {
+                    const _acc = acc;
+                    if (Country[key] !== undefined) _acc[key] = Country[key];
+                    return _acc;
+                }, {})
+                setTimeout(() => {
+                    this.setState({SelectedCountry:SelectedCountry})
+                    this.setState({Searchloading:false})
+                    Object.keys(SelectedCountry).length == 0 ? this.setState({DataAvail:false}) : this.setState({DataAvail:true})
+                }, 600)
+
+            }
+        }
     render() {
-      const countries = CountriesNameCode.countries
+      const countries = CountriesNameCode.countries;
+      const SelectedCountry = this.state.SelectedCountry;
         return (
             <Grid container spacing={3}>
                 {this.state.Isloading ?
-                    <>
-                        {/* Card Section */}
-                        <Grid item lg={12} md={12} xs={12}>
-                            {/* <Paper component="form" > */}
+                        <>
+                            {/* Card Section */}
+                            <Grid item lg={10} md={12} xs={12}>
                                     <Autocomplete
                                         id="country-select-demo"
                                         className="country-select-demo"
@@ -97,6 +129,7 @@ class Home extends Component {
                                             {option.name} ({option.alpha3})
                                             </>
                                         )}
+                                        clearOnBlur={false}
                                         renderInput={(params) => (
                                             <TextField
                                             {...params}
@@ -110,45 +143,153 @@ class Home extends Component {
                                         )}
                                         onChange={this.handleChange}
                                     />
-                            {/* </Paper> */}
-                        </Grid>
-                        {/* <Grid item lg={2} md={12} xs={12}>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                size="large"
-                                className="search-button"
-                                startIcon={<Search />}
-                                // onClick=
-                            >
-                                Search
-                            </Button>
-                        </Grid> */}
-                        <Grid item lg={4} md={12} xs={12}>
-                            <InfoCards heading="Active Cases" icon={<TrendingUp/>} style={{background: '#fdaeae'}} cost={this.state.world_total.active_cases}/>
-                        </Grid>
-                        <Grid item lg={4} md={12} xs={12}>
-                            <InfoCards heading="New Cases" icon={<TrendingUp/>} style={{background: '#89c9f3'}} cost={this.state.world_total.new_cases}/>
-                        </Grid>
-                        <Grid item lg={4} md={12} xs={12}>
-                            <InfoCards heading="New Deaths" icon={<TrendingUp/>} style={{background: '#f1cc65'}} cost={this.state.world_total.new_deaths}/>
-                        </Grid>
-
-                        <Grid item lg={4} md={12} xs={12}>
-                            <InfoCards heading="Total Cases" icon={<HowToReg/>} style={{background: '#97e8b0'}} cost={this.state.world_total.total_cases}/>
-                        </Grid>
-
-                        <Grid item lg={4} md={12} xs={12}>
-                            <InfoCards heading="Total Recovered" icon={<HowToReg/>} style={{background: '#97e8b0'}} cost={this.state.world_total.total_recovered}/>
-                        </Grid>
-
-                        <Grid item lg={4} md={12} xs={12}>
-                            <InfoCards heading="Total Deaths" icon={<MoodBad/>} style={{background: '#ce5757'}} cost={this.state.world_total.total_deaths}/>
-                        </Grid>
-                        
+                            </Grid>
+                            <Grid item lg={2} md={12} xs={12}>
+                                <Button
+                                    variant="outlined"
+                                    color="primary"
+                                    size="large"
+                                    className="search-button"
+                                    onClick={this.handleSearch}
+                                    startIcon={this.state.Searchloading ? <CircularProgress /> : <Search/>}
+                                    >
+                                    Search
+                                </Button>
+                            </Grid>
                         </>
                         :<><Spinner /></>
                     }
+                    {
+                        this.state.DataAvail == false   ? 
+                            <Zoom in={true}>
+                                <Grid item lg={12} md={12} xs={12}>
+                                    <Typography variant="h1" align="center">OOps...</Typography>
+                                    <Typography
+                                        align="center"
+                                        color="textPrimary"
+                                        variant="subtitle2"
+                                    ><Box p={2}>
+                                        {this.state.cntryid} Data is not available right now . . !
+                                        </Box>
+                                    </Typography>
+                                </Grid>
+                            </Zoom>
+                        :false
+                        
+                        // <Zoom in={true}>
+                        //     <Grid item lg={12} md={12} xs={12}>
+                        //         <Typography variant="h1" align="center">OOps...111</Typography>
+                        //         <Typography
+                        //             align="center"
+                        //             color="textPrimary"
+                        //             variant="subtitle2"
+                        //         ><Box p={2}>
+                        //             {this.state.cntryid} Data is not available
+                        //             </Box>
+                        //         </Typography>
+                        //     </Grid>
+                        // </Zoom>
+                    }
+                    {
+                    Object.keys(SelectedCountry).length != 0 ? 
+                        // <>
+                        //    <Zoom in={true}>
+                        //         <Grid item lg={12} md={12} xs={12}>
+                        //             <Typography variant="h1" align="center">OOps... </Typography>
+                        //             <Typography
+                        //                 align="center"
+                        //                 color="textPrimary"
+                        //                 variant="subtitle2"
+                        //             ><Box p={2}>
+                        //                 {this.state.cntryid} Data is not available
+                        //                 </Box>
+                        //             </Typography>
+                        //         </Grid>
+                        //     </Zoom>
+                        // </>
+                        Object.keys(SelectedCountry).map((Country)=>(
+                            <>
+                                <Zoom in={true}>
+                                    <Grid item lg={12} md={12} xs={12}>
+                                        <Typography variant="h1" align="center">{SelectedCountry[Country].country_name}</Typography>
+                                    </Grid>
+                                </Zoom>
+                                <Zoom in={true}>
+                                    <Grid item lg={4} md={12} xs={12}>
+                                        <InfoCards heading="Active Cases" icon={<TrendingUp/>} style={{background: '#fdaeae'}} cost={SelectedCountry[Country].active_cases}/>
+                                    </Grid>
+                                </Zoom>
+                                <Zoom in={true}>
+                                    <Grid item lg={4} md={12} xs={12}>
+                                        <InfoCards heading="New Cases" icon={<TrendingUp/>} style={{background: '#89c9f3'}} cost={SelectedCountry[Country].new_cases}/>
+                                    </Grid>
+                                </Zoom>
+                                <Zoom in={true}>
+                                    <Grid item lg={4} md={12} xs={12}>
+                                        <InfoCards heading="New Deaths" icon={<TrendingUp/>} style={{background: '#f1cc65'}} cost={SelectedCountry[Country].deaths}/>
+                                    </Grid>
+                                </Zoom>
+                                <Zoom in={true}>
+                                
+                                <Grid item lg={4} md={12} xs={12}>
+                                    <InfoCards heading="Deaths Per 1 Million Population" icon={<TrendingUp/>} style={{background: '#fdaeae'}} cost={SelectedCountry[Country].deaths_per_1m_population}/>
+                                </Grid>
+                                </Zoom>
+
+                                <Zoom in={true}>
+                                
+                                <Grid item lg={4} md={12} xs={12}>
+                                    <InfoCards heading="Serious Cases" icon={<TrendingUp/>} style={{background: '#89c9f3'}} cost={SelectedCountry[Country].serious_critical}/>
+                                </Grid>
+                                </Zoom>
+
+                                <Zoom in={true}>
+                                
+                                <Grid item lg={4} md={12} xs={12}>
+                                    <InfoCards heading="Cases Per 1 Million Population" icon={<TrendingUp/>} style={{background: '#f1cc65'}} cost={SelectedCountry[Country].total_cases_per_1m_population}/>
+                                </Grid>
+                                </Zoom>
+
+
+                                <Zoom in={true}>
+                                
+                                <Grid item lg={4} md={12} xs={12}>
+                                    <InfoCards heading="Total Cases" icon={<HowToReg/>} style={{background: '#97e8b0'}} cost={SelectedCountry[Country].cases}/>
+                                </Grid>
+                                </Zoom>
+
+
+                                <Zoom in={true}>
+                                    <Grid item lg={4} md={12} xs={12}>
+                                        <InfoCards heading="Total Recovered" icon={<HowToReg/>} style={{background: '#97e8b0'}} cost={SelectedCountry[Country].total_recovered}/>
+                                    </Grid>
+                                </Zoom>
+
+                                <Zoom in={true}>
+                                <Grid item lg={4} md={12} xs={12}>
+                                    <InfoCards heading="Total Deaths" icon={<MoodBad/>} style={{background: '#ce5757'}} cost={SelectedCountry[Country].deaths}/>
+                                </Grid>
+                                </Zoom>
+
+                            </>
+                        )):false
+                    }
+                        <Grid item lg={6} md={6} xs={12}>
+                            <img src={Who3} className="who-image" />
+                        </Grid>
+
+                        <Grid item lg={6} md={6} xs={12}>
+                            <img src={Who1} className="who-image" />
+                        </Grid>
+                        
+
+                        <Grid item lg={6} md={6} xs={12}>
+                            <img src={Who2} className="who-image" />
+                        </Grid>
+                        
+                        <Grid item lg={6} md={6} xs={12}>
+                            <img src={Who4} className="who-image" />
+                        </Grid>
             </Grid>
             
         );

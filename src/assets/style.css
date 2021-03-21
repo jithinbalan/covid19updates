@@ -19,6 +19,7 @@ body .MuiPaper-elevation1{
 }
 .search-button{
     height: 55px;
+    width: 100%;
 }
 .who-image{
     width: 100%!important;

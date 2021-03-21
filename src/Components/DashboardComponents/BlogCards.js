@@ -6,9 +6,11 @@
     Typography,
     makeStyles,
     Avatar,
-    Box
+    Box,
+    Link
   } from '@material-ui/core';
 import moment from 'moment'
+// import Link from '@material-ui/core/Link';
 
  const useStyles = makeStyles({
     root: {
@@ -39,16 +41,18 @@ const InfoCards = (props) => {
             image={props.image}
             />
             <CardContent>
-            <div className="word-wrap">
+            <Link href={props.link} target='_blank'>
 
-            <Typography
-                
-                variant={"h4"}
-                gutterBottom
-            >
-                {props.title.substring(0, 100) + '...'}
-            </Typography>
-            </div>
+              <div className="word-wrap">
+
+                <Typography
+                    variant={"h4"}
+                    gutterBottom
+                >
+                    {props.title.substring(0, 100) + '...'}
+                </Typography>
+              </div>
+            </Link>
 
             <div className="word-wrap">
               

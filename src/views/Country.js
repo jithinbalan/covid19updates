@@ -116,7 +116,7 @@ class Home extends Component {
                 {this.state.Isloading ?
                         <>
                             {/* Card Section */}
-                            <Grid item lg={10} md={12} xs={12}>
+                            <Grid item lg={10} md={12} sm={12} xs={12}>
                                     <Autocomplete
                                         id="country-select-demo"
                                         className="country-select-demo"
@@ -144,7 +144,7 @@ class Home extends Component {
                                         onChange={this.handleChange}
                                     />
                             </Grid>
-                            <Grid item lg={2} md={12} xs={12}>
+                            <Grid item lg={2}  md={12} sm={12} xs={12}>
                                 <Button
                                     variant="outlined"
                                     color="primary"

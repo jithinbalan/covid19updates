@@ -78,9 +78,9 @@ class News extends Component {
                     {this.state.ArticleIsloading == false ? 
                             Object.keys(Articles).map(function(Article, index) {
                                 return(
-                                    <Zoom in={true}>
-                                        <Grid item lg={4} md={12} xs={12} key={index}>
-                                            <BlogCard summary={Articles[Article].summary} image={Articles[Article].media} title={Articles[Article].title}/>
+                                    <Zoom in={true} key={index}>
+                                        <Grid item lg={4} md={12} xs={12}>
+                                            <BlogCard summary={Articles[Article].summary} image={Articles[Article].media} title={Articles[Article].title} link={Articles[Article].link}/>
                                         </Grid>
                                     </Zoom>
                                     

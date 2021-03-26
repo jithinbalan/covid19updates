@@ -33,12 +33,21 @@ body .MuiPaper-elevation1{
 
 @media only screen and (min-width: 960px) {
     /* styles for browsers larger than 960px; */
+    .logo-text {
+        width: 25%!important;
+    }
 }
 @media only screen and (min-width: 1440px) {
     /* styles for browsers larger than 1440px; */
+    .logo-text {
+        width: 25%!important;
+    }
 }
 @media only screen and (min-width: 2000px) {
     /* for sumo sized (mac) screens */
+    .logo-text {
+        width: 25%!important;
+    }
 }
 @media only screen and (max-device-width: 480px) {
    /* styles for mobile browsers smaller than 480px; (iPhone) */
@@ -63,3 +72,26 @@ body .MuiPaper-elevation1{
         width: 35%!important;
     }
 }
+
+    @media (min-width:320px)  { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+        /* styles for mobile browsers smaller than 480px; (iPhone) */
+        .logo-text {
+            width: 25%!important;
+        }
+    }
+    @media (min-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
+        .logo-text {
+            width: 35%!important;
+        }
+    }
+    @media (min-width:801px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+        .logo-text {
+            width: 35%!important;
+        }
+    }
+    @media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ 
+        .logo-text {
+            width: 60%!important;
+        }
+    }
+    @media (min-width:1281px) { /* hi-res laptops and desktops */ }

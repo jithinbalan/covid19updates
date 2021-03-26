@@ -83,7 +83,7 @@ class News extends Component {
                                             <BlogCard summary={Articles[Article].summary} image={Articles[Article].media} title={Articles[Article].title} link={Articles[Article].link}/>
                                         </Grid>
                                     </Zoom>
-                                    
+
                                 );
                             })
                         : <Spinner/>

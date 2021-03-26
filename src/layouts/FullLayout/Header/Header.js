@@ -51,7 +51,7 @@ const Header = (props) => {
                         <MenuIcon />
                     </IconButton>
                 </Hidden>
-                <Typography variant="h4">Covid-19 Latest Updates </Typography>
+                <Typography variant="h4" className="heading">Covid-19 Latest Updates </Typography>
 
                 {/* ------------ End Menu icon ------------- */}
                 <Box flexGrow={1} />

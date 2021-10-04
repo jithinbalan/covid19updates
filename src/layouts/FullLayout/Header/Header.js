@@ -2,10 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Badge, Box,  Hidden, IconButton, Toolbar, makeStyles,Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import MailIcon from '@material-ui/icons/Mail';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import NotificationsNoneIcon from '@material-ui/icons/Notifications';
-import LogoIcon from './Logo/LogoIcon';
 import LogoText from './Logo/LogoText';
 
 const useStyles = makeStyles((theme) => ({

@@ -34,6 +34,9 @@ body .MuiPaper-elevation1{
 .heading{
     font-size: 12px!important;
 }
+.logo-text{
+    height:auto!important;
+}
 /* Smartphones (portrait and landscape) ----------- */
     @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     /* Styles */

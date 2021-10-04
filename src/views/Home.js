@@ -27,7 +27,7 @@ import MapData from '../assets/localdata/world_countries.json';
 import CountriesNameCode from '../assets/localdata/countries_name_code.json';
 
 import axios from "axios";
-import moment from 'moment'
+import Moment from 'react-moment';
 
 class Home extends Component {
     
@@ -103,7 +103,7 @@ class Home extends Component {
 
     render() {
       const Articles = this.state.Articles;
-        // console.log("this.state.data",this.state.TableData)
+        console.log("this.state.data",this.state.data)
         return (
             <Grid container spacing={3}>
                 {this.state.Isloading ?
@@ -217,6 +217,13 @@ class Home extends Component {
                     }
                 <Grid item lg={12} md={12} xs={12}>
                     <Table List={this.state.TableData}/>
+                </Grid>
+                <Grid item lg={12} md={12} xs={12}>
+                    <Typography variant="body1" align="center" color="inherit">
+                    © <Moment format="YYYY">
+                        { this.state.statistic_taken_at }
+                    </Moment> CopyRight  Jithin Balan 
+                    </Typography>
                 </Grid>
             </Grid>
             

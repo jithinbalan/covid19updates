@@ -5,12 +5,8 @@
     CardMedia, 
     Typography,
     makeStyles,
-    Avatar,
-    Box,
     Link
   } from '@material-ui/core';
-import moment from 'moment'
-// import Link from '@material-ui/core/Link';
 
  const useStyles = makeStyles({
     root: {
@@ -25,12 +21,6 @@ import moment from 'moment'
         
       }
   });
-  const faces = [
-    "http://i.pravatar.cc/300?img=1",
-    "http://i.pravatar.cc/300?img=2",
-    "http://i.pravatar.cc/300?img=3",
-    "http://i.pravatar.cc/300?img=4"
-  ];  
 const InfoCards = (props) => {
   console.log(props)
     const classes = useStyles();

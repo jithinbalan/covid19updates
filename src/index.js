@@ -3,7 +3,6 @@ import App from './App';
 import ReactDOM from 'react-dom';
 import { HashRouter} from "react-router-dom";
 import './assets/style.css'
-//import {History} from './History'
 import Spinner from "./views/Spinner/Spinner";
 
 import reducer from "./store/reducers/reducer";
